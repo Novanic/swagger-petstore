@@ -1,6 +1,6 @@
 openapi: 3.0.2
 servers:
-  - url: /v3
+  - url: https://petstore3.swagger.io/api/v3
 info:
   description: |-
     This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
@@ -393,6 +393,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Order'
+          links:
+            petLink:
+              operationId: getPetById
+              parameters:
+                petId: '$response.body#/petId'
+              description: >
+                The `petId` value returned in the response can be used as
+                the `petId` parameter in `GET /pet/{petId}`.
         '400':
           description: Invalid ID supplied
         '404':
